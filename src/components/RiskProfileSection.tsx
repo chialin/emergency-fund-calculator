@@ -17,7 +17,16 @@ interface RiskField {
   options: { v: string; labelKey: TranslationKey }[];
 }
 
-const fields: RiskField[] = [
+const lifeStageField: RiskField = {
+  key: 'lifeStage',
+  labelKey: 'risk.lifeStage.label',
+  options: [
+    { v: 'working', labelKey: 'risk.lifeStage.working' },
+    { v: 'retired', labelKey: 'risk.lifeStage.retired' },
+  ],
+};
+
+const workingFields: RiskField[] = [
   {
     key: 'incomeStability',
     labelKey: 'risk.income.label',
@@ -71,6 +80,52 @@ const exampleRows: { labelKey: TranslationKey; examplesKey: TranslationKey }[] =
 ];
 
 export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Props) {
+  const isRetired = riskFactors.lifeStage === 'retired';
+
+  const renderField = (field: RiskField, dimmed: boolean) => (
+    <div
+      key={field.key}
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr auto',
+        gap: 16,
+        alignItems: 'center',
+        padding: '14px 0',
+        borderBottom: `1px solid ${T.border}`,
+        opacity: dimmed ? 0.4 : 1,
+        transition: 'opacity 0.2s',
+      }}
+    >
+      <div>
+        <div
+          style={{
+            fontFamily: "'Noto Serif TC', serif",
+            fontSize: 14,
+            color: T.text,
+          }}
+        >
+          {t(language, field.labelKey)}
+        </div>
+      </div>
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+        {field.options.map((opt) => (
+          <Chip
+            key={opt.v}
+            active={riskFactors[field.key] === opt.v}
+            onClick={() =>
+              setRiskFactors({
+                ...riskFactors,
+                [field.key]: opt.v,
+              } as RiskFactors)
+            }
+          >
+            {t(language, opt.labelKey)}
+          </Chip>
+        ))}
+      </div>
+    </div>
+  );
+
   return (
     <section style={{ marginBottom: 48 }}>
       <SectionTitle number="02" title={t(language, 'section.risk')} />
@@ -83,47 +138,44 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
           borderRadius: 2,
         }}
       >
-        {fields.map((field) => (
+        {renderField(lifeStageField, false)}
+        {workingFields.map((f) => renderField(f, isRetired))}
+
+        {isRetired && (
           <div
-            key={field.key}
             style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr auto',
-              gap: 16,
-              alignItems: 'center',
-              padding: '14px 0',
-              borderBottom: `1px solid ${T.border}`,
+              marginTop: 20,
+              background: T.bg,
+              border: `1px solid ${T.borderLight}`,
+              borderLeft: `3px solid ${T.accent}`,
+              padding: 18,
+              borderRadius: 2,
             }}
           >
-            <div>
-              <div
-                style={{
-                  fontFamily: "'Noto Serif TC', serif",
-                  fontSize: 14,
-                  color: T.text,
-                }}
-              >
-                {t(language, field.labelKey)}
-              </div>
+            <div
+              style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: 10,
+                letterSpacing: '0.2em',
+                color: T.accent,
+                textTransform: 'uppercase',
+                marginBottom: 10,
+              }}
+            >
+              {t(language, 'risk.lifeStage.note.title')}
             </div>
-            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-              {field.options.map((opt) => (
-                <Chip
-                  key={opt.v}
-                  active={riskFactors[field.key] === opt.v}
-                  onClick={() =>
-                    setRiskFactors({
-                      ...riskFactors,
-                      [field.key]: opt.v,
-                    } as RiskFactors)
-                  }
-                >
-                  {t(language, opt.labelKey)}
-                </Chip>
-              ))}
+            <div
+              style={{
+                fontFamily: "'Noto Serif TC', serif",
+                fontSize: 13,
+                lineHeight: 1.7,
+                color: T.textDim,
+              }}
+            >
+              {t(language, 'risk.lifeStage.note.body')}
             </div>
           </div>
-        ))}
+        )}
       </div>
 
       <div
@@ -133,6 +185,8 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
           border: `1px solid ${T.border}`,
           padding: 20,
           borderRadius: 2,
+          opacity: isRetired ? 0.4 : 1,
+          transition: 'opacity 0.2s',
         }}
       >
         <div

@@ -28,6 +28,7 @@ export default function App() {
   });
 
   const [riskFactors, setRiskFactors] = useState<RiskFactors>({
+    lifeStage: 'working',
     incomeStability: 'stable',
     dependents: 'none',
     industry: 'tech',

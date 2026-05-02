@@ -15,6 +15,7 @@ export interface ManualExpenses {
 export type ManualExpenseKey = keyof ManualExpenses;
 
 export interface RiskFactors {
+  lifeStage: 'working' | 'retired';
   incomeStability: 'stable' | 'mixed' | 'unstable';
   dependents: 'none' | 'partner' | 'family';
   industry: 'tech' | 'volatile' | 'seasonal';

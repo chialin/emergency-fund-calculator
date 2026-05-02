@@ -29,6 +29,13 @@ const dict = {
     'input.expense.medical': '必要醫療',
     'input.expense.other': '其他必要',
 
+    'risk.lifeStage.label': '生涯階段',
+    'risk.lifeStage.working': '工作中 / 標準計算',
+    'risk.lifeStage.retired': '已退休 / 18 個月',
+    'risk.lifeStage.note.title': '退休模式說明',
+    'risk.lifeStage.note.body':
+      '退休後沒有失業概念,主要風險不是「重新就業期」而是 sequence-of-returns risk —— 在市場下跌時被迫變現資產,會永久損害投資組合的長期回報。退休模式直接覆寫其他風險屬性,固定 18 個月作為現金緩衝(學界與 FIRE 社群常見的 12–24 個月區間中位),用以橋接市場低谷,避免在熊市賣出股債部位。健康/扶養人等變數已內含於這個基準。',
+
     'risk.income.label': '收入穩定度',
     'risk.income.stable': '穩定 / +0',
     'risk.income.mixed': '混合 / +1',
@@ -106,6 +113,13 @@ const dict = {
     'input.expense.transport': 'Transport',
     'input.expense.medical': 'Medical',
     'input.expense.other': 'Other essentials',
+
+    'risk.lifeStage.label': 'Life Stage',
+    'risk.lifeStage.working': 'Working / standard',
+    'risk.lifeStage.retired': 'Retired / 18 months',
+    'risk.lifeStage.note.title': 'Retirement Mode',
+    'risk.lifeStage.note.body':
+      "Retirees don't face unemployment risk; the dominant concern is sequence-of-returns risk — being forced to sell assets in a market downturn permanently damages long-term portfolio returns. Retirement mode overrides the other risk factors and fixes the buffer at 18 months (the midpoint of the 12–24 month range commonly cited in academic and FIRE literature) to bridge market troughs without liquidating equities or bonds in a bear market. Health and dependents considerations are already absorbed into this baseline.",
 
     'risk.income.label': 'Income Stability',
     'risk.income.stable': 'Stable / +0',

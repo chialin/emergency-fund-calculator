@@ -1,6 +1,9 @@
 import type { RiskFactors } from '../types';
 
+export const RETIRED_MONTHS = 18;
+
 export const calculateRecommendedMonths = (rf: RiskFactors): number => {
+  if (rf.lifeStage === 'retired') return RETIRED_MONTHS;
   let base = 3;
   if (rf.incomeStability === 'mixed') base += 1;
   if (rf.incomeStability === 'unstable') base += 3;
