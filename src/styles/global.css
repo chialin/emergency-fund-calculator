@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  background: #0f0e0c;
+  color: #f2ebdc;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #d4a574 !important;
+}
+
+button:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+::selection {
+  background: #d4a574;
+  color: #0f0e0c;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
