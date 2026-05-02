@@ -5,6 +5,7 @@ import { SectionTitle } from './SectionTitle';
 import { fmtMoney } from '../lib/format';
 import { classifyExpense, parseBeancountQuery } from '../lib/beancount';
 import { t, type TranslationKey } from '../lib/i18n';
+import { NumericInput } from './NumericInput';
 import type {
   BeancountRow,
   Currency,
@@ -159,14 +160,14 @@ export function InputSourceSection({
                 <div>
                   <div style={labelStyle}>{t(language, item.labelKey)}</div>
                 </div>
-                <input
-                  type="number"
+                <NumericInput
                   style={inputStyle}
+                  ariaLabel={t(language, item.labelKey)}
                   value={manualExpenses[item.key]}
-                  onChange={(e) =>
+                  onChange={(n) =>
                     setManualExpenses({
                       ...manualExpenses,
-                      [item.key]: Number(e.target.value) || 0,
+                      [item.key]: n,
                     })
                   }
                 />
@@ -234,12 +235,11 @@ Expenses:Entertainment         12000.00 TWD`}
                   <div>
                     <div style={labelStyle}>{t(language, 'input.beancount.months')}</div>
                   </div>
-                  <input
-                    type="number"
+                  <NumericInput
                     style={inputStyle}
+                    ariaLabel={t(language, 'input.beancount.months')}
                     value={monthsAveraged}
-                    min={1}
-                    onChange={(e) => setMonthsAveraged(Math.max(1, Number(e.target.value) || 1))}
+                    onChange={(n) => setMonthsAveraged(Math.max(1, n))}
                   />
                 </div>
 

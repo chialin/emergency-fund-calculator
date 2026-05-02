@@ -1,5 +1,6 @@
 import { T } from '../styles/theme';
 import { SectionTitle } from './SectionTitle';
+import { NumericInput } from './NumericInput';
 import { fmtMoney, fmtPct } from '../lib/format';
 import { t } from '../lib/i18n';
 import type { Currency, Language } from '../types';
@@ -101,10 +102,10 @@ export function CalculationResultSection({
               {t(language, 'result.currentSavings')}
             </div>
           </div>
-          <input
-            type="number"
+          <NumericInput
             value={currentSavings}
-            onChange={(e) => setCurrentSavings(Number(e.target.value) || 0)}
+            onChange={(n) => setCurrentSavings(n)}
+            ariaLabel={t(language, 'result.currentSavings')}
             style={{
               background: T.bg,
               border: `1px solid ${T.borderLight}`,
