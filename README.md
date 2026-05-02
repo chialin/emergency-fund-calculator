@@ -1,5 +1,7 @@
 # Emergency Fund Reserve Calculator
 
+🌐 **Live demo:** [emergency-fund.chialin.me](https://emergency-fund.chialin.me)
+
 基於 CFPB 指引、BLS 失業統計與 4% 安全提領法則的個人化緊急預備金計算器。
 
 ## Features
