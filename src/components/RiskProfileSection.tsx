@@ -85,6 +85,7 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
   const renderField = (field: RiskField, dimmed: boolean) => (
     <div
       key={field.key}
+      className="efc-row"
       style={{
         display: 'grid',
         gridTemplateColumns: '1fr auto',
@@ -131,10 +132,10 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
       <SectionTitle number="02" title={t(language, 'section.risk')} />
 
       <div
+        className="efc-panel"
         style={{
           background: T.bgPanel,
           border: `1px solid ${T.border}`,
-          padding: 28,
           borderRadius: 2,
         }}
       >
@@ -202,9 +203,9 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
           {t(language, 'risk.industry.examples.title')}
         </div>
         <div
+          className="efc-examples-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: '160px 1fr',
             gap: '8px 20px',
             fontSize: 12,
             lineHeight: 1.6,
