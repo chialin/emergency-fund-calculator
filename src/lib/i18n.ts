@@ -5,15 +5,15 @@ const dict = {
     'header.kicker': '§ 個人理財工具 · v1.0',
     'header.title1': '緊急預備金',
     'header.title2': '儲備計算器',
-    'header.tagline.l1': '緊急預備金的存在,是為了在失業、突發醫療或家庭事件發生時,',
+    'header.tagline.l1': '緊急預備金的存在，是為了在失業、突發醫療或家庭事件發生時，',
     'header.tagline.l2': '不必被迫變賣投資部位、舉高息債、或中斷長期理財計畫 ——',
-    'header.tagline.l3': '依據月支出與風險屬性,計算所需的緊急預備金。',
+    'header.tagline.l3': '依據月支出與風險屬性，計算所需的緊急預備金。',
 
     'footer.methodology':
       '方法 · 計算基於 CFPB 指引、BLS 失業統計、4% 安全提領法則 (Trinity Study)。',
     'footer.sources': '來源 · St. Louis Fed · Britannica Money · Big ERN Safe Withdrawal Series',
     'footer.defaultsSource': '預設支出參考 · 北部單人月支出基準對齊主計總處全台人均 23,500',
-    'footer.disclaimer': '※ 本工具為個人理財決策輔助,不構成投資建議。',
+    'footer.disclaimer': '※ 本工具為個人理財決策輔助，不構成投資建議。',
 
     'section.input': '輸入來源',
     'section.risk': '風險屬性',
@@ -34,7 +34,7 @@ const dict = {
     'risk.lifeStage.retired': '已退休 / 18 個月',
     'risk.lifeStage.note.title': '退休模式說明',
     'risk.lifeStage.note.body':
-      '退休後沒有失業概念,主要風險不是「重新就業期」而是 sequence-of-returns risk —— 在市場下跌時被迫變現資產,會永久損害投資組合的長期回報。退休模式直接覆寫其他風險屬性,固定 18 個月作為現金緩衝(學界與 FIRE 社群常見的 12–24 個月區間中位),用以橋接市場低谷,避免在熊市賣出股債部位。健康/扶養人等變數已內含於這個基準。',
+      '退休後沒有失業概念，主要風險不是「重新就業期」而是 sequence-of-returns risk —— 在市場下跌時被迫變現資產，會永久損害投資組合的長期回報。退休模式直接覆寫其他風險屬性，固定 18 個月作為現金緩衝（學界與 FIRE 社群常見的 12–24 個月區間中位），用以橋接市場低谷，避免在熊市賣出股債部位。健康/扶養人等變數已內含於這個基準。',
 
     'risk.income.label': '收入穩定度',
     'risk.income.stable': '穩定 / +0',
@@ -74,12 +74,12 @@ const dict = {
     'result.gap': '缺口',
     'result.gap.met': '✓ 已達標',
     'result.note.lt3':
-      '目前緩衝不足以撐過一般失業期。BLS 數據顯示美國失業中位期間約 11 週,建議優先把預備金堆到至少 3 個月支出的水位。',
+      '目前緩衝不足以撐過一般失業期。BLS 數據顯示美國失業中位期間約 11 週，建議優先把預備金堆到至少 3 個月支出的水位。',
     'result.note.ltRecommended':
-      '目前緩衝可撐 {coverage} 個月,接近基本水位但尚未涵蓋你的風險屬性所需的 {recommended} 個月。',
+      '目前緩衝可撐 {coverage} 個月，接近基本水位但尚未涵蓋你的風險屬性所需的 {recommended} 個月。',
     'result.note.surplus':
-      '緩衝相當充裕。可考慮將超額部位移至中短債或債券 ETF 以對抗通膨,讓現金部位的機會成本降低。',
-    'result.note.met': '緩衝符合你的風險屬性,可以開始把每月儲蓄分配到投資部位累積長期資產。',
+      '緩衝相當充裕。可考慮將超額部位移至中短債或債券 ETF 以對抗通膨，讓現金部位的機會成本降低。',
+    'result.note.met': '緩衝符合你的風險屬性，可以開始把每月儲蓄分配到投資部位累積長期資產。',
   },
   en: {
     'header.kicker': '§ Personal Finance Tooling · v1.0',

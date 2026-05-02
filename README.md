@@ -7,7 +7,7 @@
 - 手動填寫七大類必要支出
 - 五維風險係數:收入穩定度、扶養人、產業特性、跨國/換工作期、健康風險
 - 多幣別支援:TWD / USD
-- 預設值對齊主計總處全台人均月消費 (約 NT$23,500),北部單人 baseline 約 NT$26,700
+- 預設值對齊主計總處全台人均月消費（約 NT$23,500），北部單人 baseline 約 NT$26,700
 
 ## Default Expenses Reference
 
@@ -45,7 +45,7 @@ npm run preview      # 預覽 build 結果
 
 1. 將此 repo 推送到 GitHub
 2. 登入 [Cloudflare Dashboard](https://dash.cloudflare.com/) → Workers & Pages → Create → Pages → Connect to Git
-3. 選擇 repo,設定:
+3. 選擇 repo，設定:
    - **Framework preset**: Vite
    - **Build command**: `npm run build`
    - **Build output directory**: `dist`
@@ -63,7 +63,7 @@ npm run deploy
 
 在 GitHub repo 設定 Secrets:
 
-- `CLOUDFLARE_API_TOKEN` — 在 Cloudflare Dashboard → My Profile → API Tokens 建立,使用 "Edit Cloudflare Workers" 範本
+- `CLOUDFLARE_API_TOKEN` — 在 Cloudflare Dashboard → My Profile → API Tokens 建立，使用 "Edit Cloudflare Workers" 範本
 - `CLOUDFLARE_ACCOUNT_ID` — 在 Workers & Pages 概覽頁右側可看到
 
 push 到 `main` 分支即觸發 `.github/workflows/deploy.yml`。
@@ -72,7 +72,7 @@ push 到 `main` 分支即觸發 `.github/workflows/deploy.yml`。
 
 ```
 src/
-├── App.tsx                          # 主應用,組合各區塊
+├── App.tsx                          # 主應用，組合各區塊
 ├── main.tsx                         # React 入口
 ├── types.ts                         # 共用 TypeScript 型別
 ├── components/
@@ -95,8 +95,8 @@ src/
 ## Methodology
 
 - **3-6-9 法則**:基於美國 BLS 失業期統計 (中位 11.1 週)
-- **必要支出 vs 可裁切支出**:依 CFPB 指引,僅計入失業期間無法削減的開支
-- **風險係數加權**:從基底 3 個月開始,依個人情境累加,上限 18 個月
+- **必要支出 vs 可裁切支出**:依 CFPB 指引，僅計入失業期間無法削減的開支
+- **風險係數加權**:從基底 3 個月開始，依個人情境累加，上限 18 個月
 
 詳見 `Footer` 區塊的 SOURCES。
 
