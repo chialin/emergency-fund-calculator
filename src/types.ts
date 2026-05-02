@@ -1,4 +1,4 @@
-export type Currency = 'TWD' | 'JPY' | 'USD';
+export type Currency = 'TWD' | 'USD';
 
 export type InputMode = 'manual' | 'beancount';
 

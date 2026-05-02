@@ -2,7 +2,7 @@ import type { Currency } from '../types';
 
 export const fmtMoney = (n: number, currency: Currency = 'TWD'): string => {
   if (!isFinite(n)) return '—';
-  const symbol = currency === 'JPY' ? '¥' : currency === 'USD' ? '$' : 'NT$';
+  const symbol = currency === 'USD' ? '$' : 'NT$';
   return symbol + Math.round(n).toLocaleString('en-US');
 };
 

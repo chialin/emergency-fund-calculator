@@ -145,7 +145,7 @@ export function InputSourceSection({
             Currency
           </span>
           <div style={{ display: 'flex', gap: 6 }}>
-            {(['TWD', 'JPY', 'USD'] as Currency[]).map((c) => (
+            {(['TWD', 'USD'] as Currency[]).map((c) => (
               <Chip key={c} active={currency === c} onClick={() => setCurrency(c)}>
                 {c}
               </Chip>
