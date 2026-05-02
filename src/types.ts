@@ -2,10 +2,6 @@ export type Currency = 'TWD' | 'USD';
 
 export type Language = 'zh' | 'en';
 
-export type InputMode = 'manual' | 'beancount';
-
-export type ExpenseClassification = 'essential' | 'discretionary' | 'unknown';
-
 export interface ManualExpenses {
   housing: number;
   utilities: number;
@@ -17,11 +13,6 @@ export interface ManualExpenses {
 }
 
 export type ManualExpenseKey = keyof ManualExpenses;
-
-export interface BeancountRow {
-  account: string;
-  amount: number;
-}
 
 export interface RiskFactors {
   incomeStability: 'stable' | 'mixed' | 'unstable';

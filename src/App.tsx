@@ -5,22 +5,12 @@ import { Footer } from './components/Footer';
 import { InputSourceSection } from './components/InputSourceSection';
 import { RiskProfileSection } from './components/RiskProfileSection';
 import { CalculationResultSection } from './components/CalculationResultSection';
-import { classifyExpense } from './lib/beancount';
 import { calculateRecommendedMonths } from './lib/risk';
 import { loadLanguage, saveLanguage } from './lib/i18n';
-import type {
-  BeancountRow,
-  Currency,
-  ExpenseClassification,
-  InputMode,
-  Language,
-  ManualExpenses,
-  RiskFactors,
-} from './types';
+import type { Currency, Language, ManualExpenses, RiskFactors } from './types';
 
 export default function App() {
   const [language, setLanguage] = useState<Language>(() => loadLanguage());
-  const [inputMode, setInputMode] = useState<InputMode>('manual');
   const [currency, setCurrency] = useState<Currency>('TWD');
 
   useEffect(() => {
@@ -37,10 +27,6 @@ export default function App() {
     other: 2500,
   });
 
-  const [parsedRows, setParsedRows] = useState<BeancountRow[]>([]);
-  const [classifications, setClassifications] = useState<Record<string, ExpenseClassification>>({});
-  const [monthsAveraged, setMonthsAveraged] = useState(3);
-
   const [riskFactors, setRiskFactors] = useState<RiskFactors>({
     incomeStability: 'stable',
     dependents: 'none',
@@ -51,17 +37,10 @@ export default function App() {
 
   const [currentSavings, setCurrentSavings] = useState(150000);
 
-  const monthlyEssential = useMemo(() => {
-    if (inputMode === 'manual') {
-      return Object.values(manualExpenses).reduce<number>((a, b) => a + (Number(b) || 0), 0);
-    }
-    const total = parsedRows.reduce<number>((sum, row) => {
-      const cls = classifications[row.account] || classifyExpense(row.account);
-      if (cls === 'essential') return sum + row.amount;
-      return sum;
-    }, 0);
-    return total / monthsAveraged;
-  }, [inputMode, manualExpenses, parsedRows, classifications, monthsAveraged]);
+  const monthlyEssential = useMemo(
+    () => Object.values(manualExpenses).reduce<number>((a, b) => a + (Number(b) || 0), 0),
+    [manualExpenses],
+  );
 
   const recommendedMonths = useMemo(() => calculateRecommendedMonths(riskFactors), [riskFactors]);
 
@@ -87,18 +66,10 @@ export default function App() {
 
         <InputSourceSection
           language={language}
-          inputMode={inputMode}
-          setInputMode={setInputMode}
           currency={currency}
           setCurrency={setCurrency}
           manualExpenses={manualExpenses}
           setManualExpenses={setManualExpenses}
-          parsedRows={parsedRows}
-          setParsedRows={setParsedRows}
-          classifications={classifications}
-          setClassifications={setClassifications}
-          monthsAveraged={monthsAveraged}
-          setMonthsAveraged={setMonthsAveraged}
         />
 
         <RiskProfileSection

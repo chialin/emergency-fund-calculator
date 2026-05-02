@@ -18,8 +18,6 @@ const dict = {
     'section.risk': '風險屬性',
     'section.result': '計算結果',
 
-    'input.tab.manual': '手動輸入',
-    'input.tab.beancount': 'Beancount 查詢',
     'input.currency': '幣別',
 
     'input.expense.housing': '房租 / 房貸',
@@ -29,12 +27,6 @@ const dict = {
     'input.expense.transport': '通勤交通',
     'input.expense.medical': '必要醫療',
     'input.expense.other': '其他必要',
-
-    'input.beancount.prompt': '貼上 beancount query 輸出',
-    'input.beancount.months': '累計月數',
-    'input.beancount.result': '解析結果',
-    'input.beancount.chip.essential': '必要',
-    'input.beancount.chip.discretionary': '可裁',
 
     'risk.income.label': '收入穩定度',
     'risk.income.stable': '穩定 / +0',
@@ -102,8 +94,6 @@ const dict = {
     'section.risk': 'Risk Profile',
     'section.result': 'Calculation Result',
 
-    'input.tab.manual': 'Manual Entry',
-    'input.tab.beancount': 'Beancount Query',
     'input.currency': 'Currency',
 
     'input.expense.housing': 'Housing & Rent',
@@ -113,12 +103,6 @@ const dict = {
     'input.expense.transport': 'Transport',
     'input.expense.medical': 'Medical',
     'input.expense.other': 'Other essentials',
-
-    'input.beancount.prompt': 'Paste beancount query output',
-    'input.beancount.months': 'Months averaged',
-    'input.beancount.result': 'Classification',
-    'input.beancount.chip.essential': 'ESS',
-    'input.beancount.chip.discretionary': 'DIS',
 
     'risk.income.label': 'Income Stability',
     'risk.income.stable': 'Stable / +0',
