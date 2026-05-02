@@ -7,7 +7,7 @@ const dict = {
     'header.title2': '儲備計算器',
     'header.tagline.l1': '緊急預備金的存在,是為了在失業、突發醫療或家庭事件發生時,',
     'header.tagline.l2': '不必被迫變賣投資部位、舉高息債、或中斷長期理財計畫 ——',
-    'header.tagline.l3': '此工具依失業統計與你的風險屬性,計算這層現金緩衝該多大。',
+    'header.tagline.l3': '依據月支出與風險屬性,計算所需的緊急預備金。',
 
     'footer.methodology':
       '方法 · 計算基於 CFPB 指引、BLS 失業統計、4% 安全提領法則 (Trinity Study)。',
@@ -90,7 +90,7 @@ const dict = {
     'header.tagline.l2':
       'you never have to liquidate investments, take on high-interest debt, or derail long-term plans —',
     'header.tagline.l3':
-      'this tool sizes that cash buffer based on unemployment statistics and your risk profile.',
+      'this tool sizes the emergency fund based on your monthly expenses and risk profile.',
 
     'footer.methodology':
       'METHODOLOGY · Based on CFPB guidance, BLS unemployment data, and the 4% Safe Withdrawal Rule (Trinity Study).',
