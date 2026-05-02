@@ -3,10 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>緊急預備金計算器｜試算你需要存幾個月生活費 - Emergency Fund Calculator</title>
     <meta
       name="description"
-      content="Emergency Fund Reserve Calculator — 基於 CFPB 指引與 BLS 失業統計的個人化緊急預備金計算工具"
+      content="線上免費緊急預備金試算工具。依 CFPB 指引、BLS 失業統計與 4% 安全提領法則，根據你的必要支出與五維風險係數，計算緊急備用金要存幾個月生活費（3-6-9 法則）。涵蓋失業準備金、扶養人風險、產業特性等情境。"
     />
+    <meta
+      name="keywords"
+      content="緊急預備金, 緊急預備金計算, 緊急預備金計算器, 緊急備用金, 緊急預備金要存多少, 緊急預備金 幾個月, 失業準備金, 4% 法則, 3-6-9 法則, emergency fund calculator"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="chialin.me" />
+    <link rel="canonical" href="https://emergency-fund.chialin.me/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://emergency-fund.chialin.me/" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:site_name" content="Emergency Fund Calculator" />
+    <meta property="og:title" content="緊急預備金計算器 - 試算你需要存幾個月生活費" />
+    <meta
+      property="og:description"
+      content="依 CFPB 指引與 BLS 失業統計，計算個人化緊急預備金"
+    />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="緊急預備金計算器 - 試算你需要存幾個月生活費" />
+    <meta
+      name="twitter:description"
+      content="依 CFPB 指引與 BLS 失業統計，計算個人化緊急預備金"
+    />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,7 +41,74 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=JetBrains+Mono:wght@300;400;500;600&family=Noto+Serif+TC:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <title>Emergency Fund Reserve Calculator</title>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "緊急預備金計算器",
+        "description": "依 CFPB 指引與 BLS 失業統計計算個人化緊急預備金的線上工具",
+        "url": "https://emergency-fund.chialin.me/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "inLanguage": ["zh-Hant", "en"],
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "TWD"
+        }
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "緊急預備金是什麼？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "失業、生病、意外時不需動用投資、不影響生活的現金緩衝。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "緊急預備金要存多少？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "通用公式 3-6-9 個月必要支出，依個人風險上修。本計算器會依五維風險係數算出個人化月數。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "為什麼是 3-6-9 法則？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "基於美國 BLS 失業期統計，中位失業期約 11 週（≈3 個月），加上扶養人、產業景氣等風險逐級加碼到 6、9 個月。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "哪些支出要算進緊急預備金？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "依 CFPB 指引，只計入失業期間「無法削減」的必要支出：房租/房貸、水電、伙食、保險、交通、醫療、扶養。可裁切的娛樂、訂閱、儲蓄不算。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "存到緊急預備金後該放哪？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "高流動性帳戶（活存、貨幣型基金、短期定存），不要投股票。可參考 4% 安全提領法則作為長期投資的提領上限參考。"
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

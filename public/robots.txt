@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://emergency-fund.chialin.me/sitemap.xml
