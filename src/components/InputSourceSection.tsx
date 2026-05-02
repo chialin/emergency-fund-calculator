@@ -64,10 +64,10 @@ export function InputSourceSection({
       <SectionTitle number="01" title={t(language, 'section.input')} />
 
       <div
+        className="efc-panel"
         style={{
           background: T.bgPanel,
           border: `1px solid ${T.border}`,
-          padding: 28,
           borderRadius: 2,
         }}
       >
@@ -95,7 +95,7 @@ export function InputSourceSection({
 
         <div>
           {expenseItems.map((item) => (
-            <div key={item.key} style={inputRowStyle}>
+            <div key={item.key} className="efc-row" style={inputRowStyle}>
               <div>
                 <div style={labelStyle}>{t(language, item.labelKey)}</div>
               </div>
