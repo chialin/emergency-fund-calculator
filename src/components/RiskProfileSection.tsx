@@ -85,6 +85,7 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
   const renderField = (field: RiskField, dimmed: boolean) => (
     <div
       key={field.key}
+      className="efc-row"
       style={{
         display: 'grid',
         gridTemplateColumns: '1fr auto',
@@ -107,7 +108,7 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
           {t(language, field.labelKey)}
         </div>
       </div>
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+      <div className="efc-chip-row efc-risk-chips" style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
         {field.options.map((opt) => (
           <Chip
             key={opt.v}
@@ -130,15 +131,35 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
     <section style={{ marginBottom: 48 }}>
       <SectionTitle number="02" title={t(language, 'section.risk')} />
 
+      <div className="efc-mode-tabs">
+        {lifeStageField.options.map((opt) => {
+          const isActive = riskFactors.lifeStage === opt.v;
+          return (
+            <button
+              key={opt.v}
+              type="button"
+              className={isActive ? 'efc-mode-tab is-active' : 'efc-mode-tab'}
+              onClick={() =>
+                setRiskFactors({
+                  ...riskFactors,
+                  lifeStage: opt.v,
+                } as RiskFactors)
+              }
+            >
+              {t(language, opt.labelKey)}
+            </button>
+          );
+        })}
+      </div>
+
       <div
+        className="efc-panel"
         style={{
           background: T.bgPanel,
           border: `1px solid ${T.border}`,
-          padding: 28,
           borderRadius: 2,
         }}
       >
-        {renderField(lifeStageField, false)}
         {workingFields.map((f) => renderField(f, isRetired))}
 
         {isRetired && (
@@ -167,7 +188,7 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
             <div
               style={{
                 fontFamily: "'Noto Serif TC', serif",
-                fontSize: 13,
+                fontSize: 16,
                 lineHeight: 1.7,
                 color: T.textDim,
               }}
@@ -202,9 +223,9 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
           {t(language, 'risk.industry.examples.title')}
         </div>
         <div
+          className="efc-examples-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: '160px 1fr',
             gap: '8px 20px',
             fontSize: 12,
             lineHeight: 1.6,

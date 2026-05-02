@@ -49,9 +49,9 @@ export function CalculationResultSection({
       <SectionTitle number="03" title={t(language, 'section.result')} />
 
       <div
+        className="efc-metric-grid"
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
           gap: 1,
           background: T.border,
           border: `1px solid ${T.border}`,
@@ -79,15 +79,16 @@ export function CalculationResultSection({
       </div>
 
       <div
+        className="efc-panel"
         style={{
           background: T.bgPanel,
           border: `1px solid ${T.border}`,
-          padding: 28,
           borderRadius: 2,
           marginTop: 24,
         }}
       >
         <div
+          className="efc-row"
           style={{
             display: 'grid',
             gridTemplateColumns: '1fr 200px',
@@ -215,9 +216,9 @@ function Metric({
         {label}
       </div>
       <div
+        className="efc-metric-value"
         style={{
           fontFamily: "'Fraunces', serif",
-          fontSize: 32,
           fontWeight: 300,
           color: color ?? T.text,
           lineHeight: 1,
