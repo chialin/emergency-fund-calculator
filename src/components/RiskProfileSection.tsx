@@ -1,76 +1,79 @@
+import { Fragment } from 'react';
 import { T } from '../styles/theme';
 import { Chip } from './Chip';
 import { SectionTitle } from './SectionTitle';
-import type { RiskFactorKey, RiskFactors } from '../types';
+import { t, type TranslationKey } from '../lib/i18n';
+import type { Language, RiskFactorKey, RiskFactors } from '../types';
 
 interface Props {
+  language: Language;
   riskFactors: RiskFactors;
   setRiskFactors: (r: RiskFactors) => void;
 }
 
 interface RiskField {
   key: RiskFactorKey;
-  label: string;
-  sub: string;
-  options: { v: string; l: string }[];
+  labelKey: TranslationKey;
+  options: { v: string; labelKey: TranslationKey }[];
 }
 
 const fields: RiskField[] = [
   {
     key: 'incomeStability',
-    label: '收入穩定度',
-    sub: 'Income Stability',
+    labelKey: 'risk.income.label',
     options: [
-      { v: 'stable', l: '穩定 / +0' },
-      { v: 'mixed', l: '混合 / +1' },
-      { v: 'unstable', l: '不穩定 / +3' },
+      { v: 'stable', labelKey: 'risk.income.stable' },
+      { v: 'mixed', labelKey: 'risk.income.mixed' },
+      { v: 'unstable', labelKey: 'risk.income.unstable' },
     ],
   },
   {
     key: 'dependents',
-    label: '扶養人',
-    sub: 'Dependents',
+    labelKey: 'risk.dependents.label',
     options: [
-      { v: 'none', l: '無 / +0' },
-      { v: 'partner', l: '伴侶 / +1' },
-      { v: 'family', l: '家庭 / +2' },
+      { v: 'none', labelKey: 'risk.dependents.none' },
+      { v: 'partner', labelKey: 'risk.dependents.partner' },
+      { v: 'family', labelKey: 'risk.dependents.family' },
     ],
   },
   {
     key: 'industry',
-    label: '產業特性',
-    sub: 'Industry Volatility',
+    labelKey: 'risk.industry.label',
     options: [
-      { v: 'tech', l: '科技 / +0' },
-      { v: 'volatile', l: '波動 / +1' },
-      { v: 'seasonal', l: '季節 / +2' },
+      { v: 'tech', labelKey: 'risk.industry.tech' },
+      { v: 'volatile', labelKey: 'risk.industry.volatile' },
+      { v: 'seasonal', labelKey: 'risk.industry.seasonal' },
     ],
   },
   {
     key: 'relocation',
-    label: '是否在跨國/換工作期',
-    sub: 'Major Transition',
+    labelKey: 'risk.relocation.label',
     options: [
-      { v: 'no', l: '否 / +0' },
-      { v: 'yes', l: '是 / +2' },
+      { v: 'no', labelKey: 'risk.relocation.no' },
+      { v: 'yes', labelKey: 'risk.relocation.yes' },
     ],
   },
   {
     key: 'healthRisk',
-    label: '健康/運動傷害風險',
-    sub: 'Health Risk',
+    labelKey: 'risk.health.label',
     options: [
-      { v: 'low', l: '低 / +0' },
-      { v: 'medium', l: '中 / +1' },
-      { v: 'high', l: '高 / +2' },
+      { v: 'low', labelKey: 'risk.health.low' },
+      { v: 'medium', labelKey: 'risk.health.medium' },
+      { v: 'high', labelKey: 'risk.health.high' },
     ],
   },
 ];
 
-export function RiskProfileSection({ riskFactors, setRiskFactors }: Props) {
+const exampleRows: { labelKey: TranslationKey; examplesKey: TranslationKey }[] = [
+  { labelKey: 'risk.industry.tech', examplesKey: 'risk.industry.examples.tech' },
+  { labelKey: 'risk.industry.volatile', examplesKey: 'risk.industry.examples.volatile' },
+  { labelKey: 'risk.industry.seasonal', examplesKey: 'risk.industry.examples.seasonal' },
+];
+
+export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Props) {
   return (
     <section style={{ marginBottom: 48 }}>
-      <SectionTitle number="02" title="Risk Profile" />
+      <SectionTitle number="02" title={t(language, 'section.risk')} />
 
       <div
         style={{
@@ -100,18 +103,7 @@ export function RiskProfileSection({ riskFactors, setRiskFactors }: Props) {
                   color: T.text,
                 }}
               >
-                {field.label}
-              </div>
-              <div
-                style={{
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: 10,
-                  color: T.textFaint,
-                  marginTop: 2,
-                  letterSpacing: '0.05em',
-                }}
-              >
-                {field.sub}
+                {t(language, field.labelKey)}
               </div>
             </div>
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
@@ -126,12 +118,91 @@ export function RiskProfileSection({ riskFactors, setRiskFactors }: Props) {
                     } as RiskFactors)
                   }
                 >
-                  {opt.l}
+                  {t(language, opt.labelKey)}
                 </Chip>
               ))}
             </div>
           </div>
         ))}
+      </div>
+
+      <div
+        style={{
+          marginTop: 16,
+          background: T.bg,
+          border: `1px solid ${T.border}`,
+          padding: 20,
+          borderRadius: 2,
+        }}
+      >
+        <div
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: 10,
+            letterSpacing: '0.2em',
+            color: T.textDim,
+            textTransform: 'uppercase',
+            marginBottom: 14,
+          }}
+        >
+          {t(language, 'risk.industry.examples.title')}
+        </div>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '160px 1fr',
+            gap: '8px 20px',
+            fontSize: 12,
+            lineHeight: 1.6,
+          }}
+        >
+          <div
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 10,
+              letterSpacing: '0.15em',
+              color: T.textFaint,
+              textTransform: 'uppercase',
+            }}
+          >
+            {t(language, 'risk.industry.examples.col.level')}
+          </div>
+          <div
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: 10,
+              letterSpacing: '0.15em',
+              color: T.textFaint,
+              textTransform: 'uppercase',
+            }}
+          >
+            {t(language, 'risk.industry.examples.col.examples')}
+          </div>
+          {exampleRows.map((row) => (
+            <Fragment key={row.labelKey}>
+              <div
+                style={{
+                  fontFamily: "'Noto Serif TC', serif",
+                  color: T.text,
+                  paddingTop: 4,
+                  borderTop: `1px solid ${T.border}`,
+                }}
+              >
+                {t(language, row.labelKey)}
+              </div>
+              <div
+                style={{
+                  fontFamily: "'Noto Serif TC', serif",
+                  color: T.textDim,
+                  paddingTop: 4,
+                  borderTop: `1px solid ${T.border}`,
+                }}
+              >
+                {t(language, row.examplesKey)}
+              </div>
+            </Fragment>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,9 +1,11 @@
 import { T } from '../styles/theme';
 import { SectionTitle } from './SectionTitle';
 import { fmtMoney, fmtPct } from '../lib/format';
-import type { Currency } from '../types';
+import { t } from '../lib/i18n';
+import type { Currency, Language } from '../types';
 
 interface Props {
+  language: Language;
   currency: Currency;
   monthlyEssential: number;
   recommendedMonths: number;
@@ -17,6 +19,7 @@ interface Props {
 }
 
 export function CalculationResultSection({
+  language,
   currency,
   monthlyEssential,
   recommendedMonths,
@@ -30,16 +33,19 @@ export function CalculationResultSection({
 }: Props) {
   const note =
     coverageMonths < 3
-      ? '目前緩衝不足以撐過一般失業期。BLS 數據顯示美國失業中位期間約 11 週,建議優先把預備金堆到至少 3 個月支出的水位。'
+      ? t(language, 'result.note.lt3')
       : coverageMonths < recommendedMonths
-        ? `目前緩衝可撐 ${coverageMonths.toFixed(1)} 個月,接近基本水位但尚未涵蓋你的風險畫像所需的 ${recommendedMonths} 個月。`
+        ? t(language, 'result.note.ltRecommended', {
+            coverage: coverageMonths.toFixed(1),
+            recommended: recommendedMonths,
+          })
         : coverageMonths > recommendedMonths * 1.5
-          ? '緩衝相當充裕。可考慮將超額部位移至中短債或債券 ETF 以對抗通膨,讓現金部位的機會成本降低。'
-          : '緩衝符合你的風險畫像,可以開始把每月儲蓄分配到投資部位累積長期資產。';
+          ? t(language, 'result.note.surplus')
+          : t(language, 'result.note.met');
 
   return (
     <section style={{ marginBottom: 48 }}>
-      <SectionTitle number="03" title="Calculation Result" />
+      <SectionTitle number="03" title={t(language, 'section.result')} />
 
       <div
         style={{
@@ -50,10 +56,25 @@ export function CalculationResultSection({
           border: `1px solid ${T.border}`,
         }}
       >
-        <Metric label="Monthly Essential" value={fmtMoney(monthlyEssential, currency)} />
-        <Metric label="Recommended Months" value={`${recommendedMonths}`} unit="months" />
-        <Metric label="Target Reserve" value={fmtMoney(targetAmount, currency)} color={T.accent} />
-        <Metric label="Fund Ratio" value={fundRatio.toFixed(1)} unit="×" />
+        <Metric
+          label={t(language, 'result.monthlyEssential')}
+          value={fmtMoney(monthlyEssential, currency)}
+        />
+        <Metric
+          label={t(language, 'result.recommendedMonths')}
+          value={`${recommendedMonths}`}
+          unit={t(language, 'result.recommendedMonths.unit')}
+        />
+        <Metric
+          label={t(language, 'result.targetReserve')}
+          value={fmtMoney(targetAmount, currency)}
+          color={T.accent}
+        />
+        <Metric
+          label={t(language, 'result.fundRatio')}
+          value={fundRatio.toFixed(1)}
+          unit={t(language, 'result.fundRatio.unit')}
+        />
       </div>
 
       <div
@@ -77,18 +98,7 @@ export function CalculationResultSection({
         >
           <div>
             <div style={{ fontFamily: "'Noto Serif TC', serif", fontSize: 14, color: T.text }}>
-              目前緊急預備金餘額
-            </div>
-            <div
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: 10,
-                color: T.textFaint,
-                marginTop: 2,
-                letterSpacing: '0.05em',
-              }}
-            >
-              Current Emergency Savings Balance
+              {t(language, 'result.currentSavings')}
             </div>
           </div>
           <input
@@ -122,9 +132,12 @@ export function CalculationResultSection({
               color: T.textDim,
             }}
           >
-            <span>PROGRESS</span>
+            <span style={{ textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+              {t(language, 'result.progress')}
+            </span>
             <span style={{ color: completionPct >= 1 ? T.ok : T.accent }}>
-              {fmtPct(completionPct)} · 涵蓋 {coverageMonths.toFixed(1)} 個月
+              {fmtPct(completionPct)} ·{' '}
+              {t(language, 'result.coverage', { n: coverageMonths.toFixed(1) })}
             </span>
           </div>
           <div
@@ -149,9 +162,9 @@ export function CalculationResultSection({
               justifyContent: 'space-between',
             }}
           >
-            <span>缺口 / Gap</span>
+            <span>{t(language, 'result.gap')}</span>
             <span style={{ color: gap > 0 ? T.warn : T.ok }}>
-              {gap > 0 ? fmtMoney(gap, currency) : '✓ 已達標'}
+              {gap > 0 ? fmtMoney(gap, currency) : t(language, 'result.gap.met')}
             </span>
           </div>
         </div>
@@ -159,7 +172,7 @@ export function CalculationResultSection({
         <div
           style={{
             fontFamily: "'Noto Serif TC', serif",
-            fontSize: 13,
+            fontSize: 18,
             color: T.textDim,
             lineHeight: 1.7,
             fontStyle: 'italic',

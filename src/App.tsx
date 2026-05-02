@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { T } from './styles/theme';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -7,18 +7,25 @@ import { RiskProfileSection } from './components/RiskProfileSection';
 import { CalculationResultSection } from './components/CalculationResultSection';
 import { classifyExpense } from './lib/beancount';
 import { calculateRecommendedMonths } from './lib/risk';
+import { loadLanguage, saveLanguage } from './lib/i18n';
 import type {
   BeancountRow,
   Currency,
   ExpenseClassification,
   InputMode,
+  Language,
   ManualExpenses,
   RiskFactors,
 } from './types';
 
 export default function App() {
+  const [language, setLanguage] = useState<Language>(() => loadLanguage());
   const [inputMode, setInputMode] = useState<InputMode>('manual');
   const [currency, setCurrency] = useState<Currency>('TWD');
+
+  useEffect(() => {
+    saveLanguage(language);
+  }, [language]);
 
   const [manualExpenses, setManualExpenses] = useState<ManualExpenses>({
     housing: 25000,
@@ -38,7 +45,7 @@ export default function App() {
     incomeStability: 'stable',
     dependents: 'none',
     industry: 'tech',
-    relocation: 'yes',
+    relocation: 'no',
     healthRisk: 'low',
   });
 
@@ -76,9 +83,10 @@ export default function App() {
       }}
     >
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <Header />
+        <Header language={language} setLanguage={setLanguage} />
 
         <InputSourceSection
+          language={language}
           inputMode={inputMode}
           setInputMode={setInputMode}
           currency={currency}
@@ -93,9 +101,14 @@ export default function App() {
           setMonthsAveraged={setMonthsAveraged}
         />
 
-        <RiskProfileSection riskFactors={riskFactors} setRiskFactors={setRiskFactors} />
+        <RiskProfileSection
+          language={language}
+          riskFactors={riskFactors}
+          setRiskFactors={setRiskFactors}
+        />
 
         <CalculationResultSection
+          language={language}
           currency={currency}
           monthlyEssential={monthlyEssential}
           recommendedMonths={recommendedMonths}
@@ -108,7 +121,7 @@ export default function App() {
           setCurrentSavings={setCurrentSavings}
         />
 
-        <Footer />
+        <Footer language={language} />
       </div>
     </div>
   );

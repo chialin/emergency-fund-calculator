@@ -4,16 +4,19 @@ import { Chip } from './Chip';
 import { SectionTitle } from './SectionTitle';
 import { fmtMoney } from '../lib/format';
 import { classifyExpense, parseBeancountQuery } from '../lib/beancount';
+import { t, type TranslationKey } from '../lib/i18n';
 import type {
   BeancountRow,
   Currency,
   ExpenseClassification,
   InputMode,
+  Language,
   ManualExpenseKey,
   ManualExpenses,
 } from '../types';
 
 interface Props {
+  language: Language;
   inputMode: InputMode;
   setInputMode: (m: InputMode) => void;
   currency: Currency;
@@ -28,14 +31,14 @@ interface Props {
   setMonthsAveraged: (n: number) => void;
 }
 
-const expenseItems: { key: ManualExpenseKey; label: string; sub: string }[] = [
-  { key: 'housing', label: '房租 / 房貸', sub: 'Housing & Rent' },
-  { key: 'utilities', label: '水電瓦斯網路', sub: 'Utilities' },
-  { key: 'groceries', label: '基本食材', sub: 'Groceries' },
-  { key: 'insurance', label: '保險費', sub: 'Insurance' },
-  { key: 'transport', label: '通勤交通', sub: 'Transport' },
-  { key: 'medical', label: '必要醫療', sub: 'Medical' },
-  { key: 'other', label: '其他必要', sub: 'Other essentials' },
+const expenseItems: { key: ManualExpenseKey; labelKey: TranslationKey }[] = [
+  { key: 'housing', labelKey: 'input.expense.housing' },
+  { key: 'utilities', labelKey: 'input.expense.utilities' },
+  { key: 'groceries', labelKey: 'input.expense.groceries' },
+  { key: 'insurance', labelKey: 'input.expense.insurance' },
+  { key: 'transport', labelKey: 'input.expense.transport' },
+  { key: 'medical', labelKey: 'input.expense.medical' },
+  { key: 'other', labelKey: 'input.expense.other' },
 ];
 
 const inputRowStyle = {
@@ -53,14 +56,6 @@ const labelStyle = {
   color: T.text,
 };
 
-const sublabelStyle = {
-  fontFamily: "'JetBrains Mono', monospace",
-  fontSize: 10,
-  color: T.textFaint,
-  marginTop: 2,
-  letterSpacing: '0.05em',
-};
-
 const inputStyle = {
   background: T.bg,
   border: `1px solid ${T.borderLight}`,
@@ -76,6 +71,7 @@ const inputStyle = {
 };
 
 export function InputSourceSection({
+  language,
   inputMode,
   setInputMode,
   currency,
@@ -93,7 +89,7 @@ export function InputSourceSection({
 
   return (
     <section style={{ marginBottom: 48 }}>
-      <SectionTitle number="01" title="Input Source" />
+      <SectionTitle number="01" title={t(language, 'section.input')} />
 
       <div
         style={{
@@ -126,7 +122,9 @@ export function InputSourceSection({
               }}
               onClick={() => setInputMode(mode)}
             >
-              {mode === 'manual' ? 'Manual Entry' : 'Beancount Query'}
+              {mode === 'manual'
+                ? t(language, 'input.tab.manual')
+                : t(language, 'input.tab.beancount')}
             </button>
           ))}
         </div>
@@ -142,7 +140,7 @@ export function InputSourceSection({
               textTransform: 'uppercase',
             }}
           >
-            Currency
+            {t(language, 'input.currency')}
           </span>
           <div style={{ display: 'flex', gap: 6 }}>
             {(['TWD', 'USD'] as Currency[]).map((c) => (
@@ -159,8 +157,7 @@ export function InputSourceSection({
             {expenseItems.map((item) => (
               <div key={item.key} style={inputRowStyle}>
                 <div>
-                  <div style={labelStyle}>{item.label}</div>
-                  <div style={sublabelStyle}>{item.sub}</div>
+                  <div style={labelStyle}>{t(language, item.labelKey)}</div>
                 </div>
                 <input
                   type="number"
@@ -182,8 +179,16 @@ export function InputSourceSection({
         {inputMode === 'beancount' && (
           <div>
             <div style={{ marginBottom: 16 }}>
-              <div style={labelStyle}>貼上 beancount query 輸出</div>
-              <div style={sublabelStyle}>
+              <div style={labelStyle}>{t(language, 'input.beancount.prompt')}</div>
+              <div
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: 10,
+                  color: T.textFaint,
+                  marginTop: 2,
+                  letterSpacing: '0.05em',
+                }}
+              >
                 bean-query yourbook.bean &quot;SELECT account, sum(position) FROM
                 has_account(&apos;Expenses&apos;) GROUP BY account&quot;
               </div>
@@ -227,8 +232,7 @@ Expenses:Entertainment         12000.00 TWD`}
               <div style={{ marginTop: 24 }}>
                 <div style={{ ...inputRowStyle, gridTemplateColumns: '1fr 120px' }}>
                   <div>
-                    <div style={labelStyle}>累計月數</div>
-                    <div style={sublabelStyle}>Months averaged in query</div>
+                    <div style={labelStyle}>{t(language, 'input.beancount.months')}</div>
                   </div>
                   <input
                     type="number"
@@ -250,7 +254,7 @@ Expenses:Entertainment         12000.00 TWD`}
                     marginBottom: 12,
                   }}
                 >
-                  解析結果 / Classification
+                  {t(language, 'input.beancount.result')}
                 </div>
                 <div style={{ background: T.bg, border: `1px solid ${T.border}`, padding: 16 }}>
                   {parsedRows.map((row, i) => {
@@ -294,7 +298,9 @@ Expenses:Entertainment         12000.00 TWD`}
                                 })
                               }
                             >
-                              {c === 'essential' ? 'ESS' : 'DIS'}
+                              {c === 'essential'
+                                ? t(language, 'input.beancount.chip.essential')
+                                : t(language, 'input.beancount.chip.discretionary')}
                             </Chip>
                           ))}
                         </div>

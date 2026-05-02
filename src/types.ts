@@ -1,5 +1,7 @@
 export type Currency = 'TWD' | 'USD';
 
+export type Language = 'zh' | 'en';
+
 export type InputMode = 'manual' | 'beancount';
 
 export type ExpenseClassification = 'essential' | 'discretionary' | 'unknown';

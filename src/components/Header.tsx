@@ -1,6 +1,14 @@
 import { T } from '../styles/theme';
+import { Chip } from './Chip';
+import { t } from '../lib/i18n';
+import type { Language } from '../types';
 
-export function Header() {
+interface Props {
+  language: Language;
+  setLanguage: (l: Language) => void;
+}
+
+export function Header({ language, setLanguage }: Props) {
   return (
     <header
       style={{
@@ -11,15 +19,31 @@ export function Header() {
     >
       <div
         style={{
-          fontFamily: "'JetBrains Mono', monospace",
-          fontSize: 11,
-          letterSpacing: '0.3em',
-          color: T.accent,
-          textTransform: 'uppercase',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
           marginBottom: 16,
+          gap: 16,
         }}
       >
-        § Personal Finance Tooling · v1.0
+        <div
+          style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: 11,
+            letterSpacing: '0.3em',
+            color: T.accent,
+            textTransform: 'uppercase',
+          }}
+        >
+          {t(language, 'header.kicker')}
+        </div>
+        <div style={{ display: 'flex', gap: 6 }}>
+          {(['zh', 'en'] as Language[]).map((l) => (
+            <Chip key={l} active={language === l} onClick={() => setLanguage(l)}>
+              {l === 'zh' ? '中' : 'EN'}
+            </Chip>
+          ))}
+        </div>
       </div>
       <h1
         style={{
@@ -32,10 +56,10 @@ export function Header() {
           fontStyle: 'italic',
         }}
       >
-        Emergency Fund
+        {t(language, 'header.title1')}
         <br />
         <span style={{ fontWeight: 600, fontStyle: 'normal', color: T.accent }}>
-          Reserve Calculator
+          {t(language, 'header.title2')}
         </span>
       </h1>
       <p
@@ -47,11 +71,11 @@ export function Header() {
           lineHeight: 1.7,
         }}
       >
-        從 1737 年 Benjamin Franklin 的「省下一分錢勝過賺取兩分錢」,
+        {t(language, 'header.tagline.l1')}
         <br />
-        到當代基於失業統計與順序風險的精算方法 ——
+        {t(language, 'header.tagline.l2')}
         <br />
-        為你量身計算現金堡壘的尺寸。
+        {t(language, 'header.tagline.l3')}
       </p>
     </header>
   );

@@ -1,6 +1,12 @@
 import { T } from '../styles/theme';
+import { t } from '../lib/i18n';
+import type { Language } from '../types';
 
-export function Footer() {
+interface Props {
+  language: Language;
+}
+
+export function Footer({ language }: Props) {
   return (
     <div
       style={{
@@ -13,13 +19,9 @@ export function Footer() {
         borderTop: `1px solid ${T.border}`,
       }}
     >
-      <div>METHODOLOGY · 計算基於 CFPB 指引、BLS 失業統計、4% 安全提領法則 (Trinity Study)。</div>
-      <div style={{ marginTop: 8 }}>
-        SOURCES · St. Louis Fed · Britannica Money · Big ERN Safe Withdrawal Series
-      </div>
-      <div style={{ marginTop: 8, color: T.textFaint }}>
-        ※ 本工具為個人理財決策輔助,不構成投資建議。
-      </div>
+      <div>{t(language, 'footer.methodology')}</div>
+      <div style={{ marginTop: 8 }}>{t(language, 'footer.sources')}</div>
+      <div style={{ marginTop: 8, color: T.textFaint }}>{t(language, 'footer.disclaimer')}</div>
     </div>
   );
 }
