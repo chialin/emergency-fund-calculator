@@ -12,6 +12,7 @@ const dict = {
     'footer.methodology':
       '方法 · 計算基於 CFPB 指引、BLS 失業統計、4% 安全提領法則 (Trinity Study)。',
     'footer.sources': '來源 · St. Louis Fed · Britannica Money · Big ERN Safe Withdrawal Series',
+    'footer.defaultsSource': '預設支出參考 · 北部單人月支出基準對齊主計總處全台人均 23,500',
     'footer.disclaimer': '※ 本工具為個人理財決策輔助,不構成投資建議。',
 
     'section.input': '輸入來源',
@@ -87,6 +88,8 @@ const dict = {
     'footer.methodology':
       'METHODOLOGY · Based on CFPB guidance, BLS unemployment data, and the 4% Safe Withdrawal Rule (Trinity Study).',
     'footer.sources': 'SOURCES · St. Louis Fed · Britannica Money · Big ERN Safe Withdrawal Series',
+    'footer.defaultsSource':
+      'DEFAULT EXPENSES · Single-person urban N. Taiwan baseline, aligned with DGBAS per-capita ~NT$23,500',
     'footer.disclaimer':
       '※ This tool aids personal finance decisions and does not constitute investment advice.',
 

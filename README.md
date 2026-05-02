@@ -4,10 +4,21 @@
 
 ## Features
 
-- 雙模式輸入:手動填寫 vs Beancount query 解析
+- 手動填寫七大類必要支出
 - 五維風險係數:收入穩定度、扶養人、產業特性、跨國/換工作期、健康風險
-- 自動分類必要支出 vs 可裁切支出 (支援繁中關鍵字)
 - 多幣別支援:TWD / USD
+- 預設值對齊主計總處全台人均月消費 (約 NT$23,500),北部單人 baseline 約 NT$26,700
+
+## Default Expenses Reference
+
+預設值以「北部單人都會、僅必要支出」為基準。資料來源:
+
+- [行政院主計總處 · 家庭收支調查](https://www.stat.gov.tw/cl.aspx?n=2693) — 全台每人月消費平均約 NT$23,500
+- [Yahoo News · 縣市人均月消費](https://tw.news.yahoo.com/%E5%A4%A9%E9%BE%8D%E5%9C%8B%E7%94%9F%E6%B4%BB%E8%B2%BB%E5%A5%BD%E8%B2%B4-%E5%8F%B0%E5%8C%97%E5%B8%82%E4%BA%BA%E5%9D%87%E6%9C%88%E6%B6%88%E8%B2%BB3%E8%90%AC3730%E5%85%83%E5%B1%85%E5%86%A0-121724188.html) — 台北 NT$33,730 / 南投 NT$18,650
+- [Money 錢雜誌](https://money.cmoney.tw/article/28218) — 類別細項拆解
+- [數位時代 · 家庭結構分析 2014–2024](https://www.bnext.com.tw/article/84783/taiwan-household-consumption-structure-2014-2024-analysis) — 住宅/醫療/食品三大項佔比約 57%
+
+兩人或家庭情境請依比例上調。
 
 ## Tech Stack
 
@@ -74,7 +85,7 @@ src/
 │   └── CalculationResultSection.tsx # 03 計算結果
 ├── lib/
 │   ├── format.ts                    # 金額/百分比格式化
-│   ├── beancount.ts                 # beancount query 解析 + 必要支出分類
+│   ├── i18n.ts                      # 中英文翻譯字典
 │   └── risk.ts                      # 風險係數加成計算
 └── styles/
     ├── global.css
