@@ -63,12 +63,11 @@ export function Header({ language, setLanguage }: Props) {
         </span>
       </h1>
       <p
+        className="efc-tagline"
         style={{
           fontFamily: "'JetBrains Mono', monospace",
-          fontSize: 16,
           color: T.textDim,
           maxWidth: 600,
-          lineHeight: 1.7,
         }}
       >
         {t(language, 'header.tagline.l1')}
@@ -78,9 +77,9 @@ export function Header({ language, setLanguage }: Props) {
         {t(language, 'header.tagline.l3')}
       </p>
       <p
+        className="efc-tagline"
         style={{
           fontFamily: "'JetBrains Mono', monospace",
-          fontSize: 16,
           color: T.textFaint,
           maxWidth: 600,
           marginTop: 12,
