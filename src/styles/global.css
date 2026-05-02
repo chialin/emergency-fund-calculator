@@ -40,3 +40,54 @@ input[type='number']::-webkit-inner-spin-button {
 input[type='number'] {
   -moz-appearance: textfield;
 }
+
+.efc-page {
+  padding: 40px 24px;
+}
+
+.efc-panel {
+  padding: 28px;
+}
+
+.efc-tagline {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.efc-metric-value {
+  font-size: 32px;
+}
+
+.efc-metric-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.efc-examples-grid {
+  grid-template-columns: 160px 1fr;
+}
+
+@media (max-width: 640px) {
+  .efc-page {
+    padding: 24px 16px;
+  }
+  .efc-panel {
+    padding: 18px;
+  }
+  .efc-tagline {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .efc-metric-value {
+    font-size: 24px;
+  }
+  .efc-metric-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .efc-examples-grid {
+    grid-template-columns: auto 1fr;
+  }
+  .efc-row {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+}
