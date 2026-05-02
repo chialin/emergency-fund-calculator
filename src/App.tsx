@@ -18,13 +18,13 @@ export default function App() {
   }, [language]);
 
   const [manualExpenses, setManualExpenses] = useState<ManualExpenses>({
-    housing: 25000,
-    utilities: 3500,
-    groceries: 8000,
-    insurance: 4500,
-    transport: 3000,
-    medical: 2000,
-    other: 2500,
+    housing: 13000,
+    utilities: 2000,
+    groceries: 6000,
+    insurance: 2000,
+    transport: 1200,
+    medical: 1000,
+    other: 1500,
   });
 
   const [riskFactors, setRiskFactors] = useState<RiskFactors>({
