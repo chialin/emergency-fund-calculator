@@ -84,7 +84,7 @@ export function InputSourceSection({
           >
             {t(language, 'input.currency')}
           </span>
-          <div style={{ display: 'flex', gap: 6 }}>
+          <div className="efc-chip-row" style={{ display: 'flex', gap: 6 }}>
             {(['TWD', 'USD'] as Currency[]).map((c) => (
               <Chip key={c} active={currency === c} onClick={() => setCurrency(c)}>
                 {c}

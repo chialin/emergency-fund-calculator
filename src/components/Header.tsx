@@ -37,7 +37,7 @@ export function Header({ language, setLanguage }: Props) {
         >
           {t(language, 'header.kicker')}
         </div>
-        <div style={{ display: 'flex', gap: 6 }}>
+        <div className="efc-chip-row" style={{ display: 'flex', gap: 6 }}>
           {(['zh', 'en'] as Language[]).map((l) => (
             <Chip key={l} active={language === l} onClick={() => setLanguage(l)}>
               {l === 'zh' ? '中' : 'EN'}

@@ -26,7 +26,7 @@ export function Chip({ active, onClick, children, variant = 'default', size = 'm
   };
 
   return (
-    <button type="button" style={styles} onClick={onClick}>
+    <button type="button" className="efc-chip" style={styles} onClick={onClick}>
       {children}
     </button>
   );

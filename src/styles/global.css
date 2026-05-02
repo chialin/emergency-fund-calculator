@@ -90,4 +90,11 @@ input[type='number'] {
     grid-template-columns: 1fr !important;
     gap: 8px !important;
   }
+  .efc-chip {
+    font-size: 13px !important;
+    padding: 9px 16px !important;
+  }
+  .efc-chip-row {
+    gap: 10px !important;
+  }
 }
