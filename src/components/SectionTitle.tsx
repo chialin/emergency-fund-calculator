@@ -10,7 +10,7 @@ export function SectionTitle({ number, title }: Props) {
     <div
       style={{
         fontFamily: "'JetBrains Mono', monospace",
-        fontSize: 11,
+        fontSize: 16,
         letterSpacing: '0.25em',
         color: T.textDim,
         textTransform: 'uppercase',

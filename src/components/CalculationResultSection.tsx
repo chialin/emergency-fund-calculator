@@ -129,7 +129,7 @@ export function CalculationResultSection({
               justifyContent: 'space-between',
               marginBottom: 10,
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: 11,
+              fontSize: 16,
               color: T.textDim,
             }}
           >
@@ -157,7 +157,7 @@ export function CalculationResultSection({
             style={{
               marginTop: 12,
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: 11,
+              fontSize: 16,
               color: T.textDim,
               display: 'flex',
               justifyContent: 'space-between',
@@ -229,7 +229,7 @@ function Metric({
           <span
             style={{
               fontFamily: "'JetBrains Mono', monospace",
-              fontSize: 11,
+              fontSize: 16,
               color: T.textFaint,
               marginLeft: 6,
             }}

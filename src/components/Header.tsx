@@ -29,7 +29,7 @@ export function Header({ language, setLanguage }: Props) {
         <div
           style={{
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: 11,
+            fontSize: 16,
             letterSpacing: '0.3em',
             color: T.accent,
             textTransform: 'uppercase',
@@ -65,7 +65,7 @@ export function Header({ language, setLanguage }: Props) {
       <p
         style={{
           fontFamily: "'JetBrains Mono', monospace",
-          fontSize: 13,
+          fontSize: 16,
           color: T.textDim,
           maxWidth: 600,
           lineHeight: 1.7,
@@ -76,6 +76,18 @@ export function Header({ language, setLanguage }: Props) {
         {t(language, 'header.tagline.l2')}
         <br />
         {t(language, 'header.tagline.l3')}
+      </p>
+      <p
+        style={{
+          fontFamily: "'JetBrains Mono', monospace",
+          fontSize: 16,
+          color: T.textFaint,
+          maxWidth: 600,
+          marginTop: 12,
+          marginBottom: 0,
+        }}
+      >
+        {t(language, 'footer.disclaimer')}
       </p>
     </header>
   );
