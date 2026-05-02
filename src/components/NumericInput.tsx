@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import { fmtNumber } from '../lib/format';
 
 interface Props {
@@ -11,13 +11,19 @@ interface Props {
 export function NumericInput({ value, onChange, style, ariaLabel }: Props) {
   const [text, setText] = useState(() => fmtNumber(value));
   const [focused, setFocused] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!focused) setText(fmtNumber(value));
   }, [value, focused]);
 
+  useLayoutEffect(() => {
+    if (focused) inputRef.current?.select();
+  }, [focused]);
+
   return (
     <input
+      ref={inputRef}
       type="text"
       inputMode="numeric"
       aria-label={ariaLabel}
