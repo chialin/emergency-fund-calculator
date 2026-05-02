@@ -97,4 +97,8 @@ input[type='number'] {
   .efc-chip-row {
     gap: 10px !important;
   }
+  .efc-risk-chips {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
 }

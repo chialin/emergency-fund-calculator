@@ -108,7 +108,7 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
           {t(language, field.labelKey)}
         </div>
       </div>
-      <div className="efc-chip-row" style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+      <div className="efc-chip-row efc-risk-chips" style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
         {field.options.map((opt) => (
           <Chip
             key={opt.v}
