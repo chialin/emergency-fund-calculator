@@ -53,12 +53,12 @@ export default function App() {
 
   return (
     <div
+      className="efc-page"
       style={{
         minHeight: '100vh',
         background: T.bg,
         color: T.text,
         fontFamily: "'Noto Serif TC', 'Fraunces', Georgia, serif",
-        padding: '40px 24px',
         backgroundImage: `radial-gradient(circle at 20% 0%, rgba(212, 165, 116, 0.04) 0%, transparent 50%), radial-gradient(circle at 80% 100%, rgba(122, 158, 126, 0.03) 0%, transparent 50%)`,
       }}
     >
