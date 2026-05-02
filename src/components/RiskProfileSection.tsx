@@ -131,6 +131,27 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
     <section style={{ marginBottom: 48 }}>
       <SectionTitle number="02" title={t(language, 'section.risk')} />
 
+      <div className="efc-mode-tabs">
+        {lifeStageField.options.map((opt) => {
+          const isActive = riskFactors.lifeStage === opt.v;
+          return (
+            <button
+              key={opt.v}
+              type="button"
+              className={isActive ? 'efc-mode-tab is-active' : 'efc-mode-tab'}
+              onClick={() =>
+                setRiskFactors({
+                  ...riskFactors,
+                  lifeStage: opt.v,
+                } as RiskFactors)
+              }
+            >
+              {t(language, opt.labelKey)}
+            </button>
+          );
+        })}
+      </div>
+
       <div
         className="efc-panel"
         style={{
@@ -139,7 +160,6 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
           borderRadius: 2,
         }}
       >
-        {renderField(lifeStageField, false)}
         {workingFields.map((f) => renderField(f, isRetired))}
 
         {isRetired && (
@@ -168,7 +188,7 @@ export function RiskProfileSection({ language, riskFactors, setRiskFactors }: Pr
             <div
               style={{
                 fontFamily: "'Noto Serif TC', serif",
-                fontSize: 13,
+                fontSize: 16,
                 lineHeight: 1.7,
                 color: T.textDim,
               }}

@@ -66,6 +66,35 @@ input[type='number'] {
   grid-template-columns: 160px 1fr;
 }
 
+.efc-mode-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #2a2620;
+}
+
+.efc-mode-tab {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: #8b8275;
+  font-family: 'Noto Serif TC', serif;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  padding: 14px 12px;
+  margin-bottom: -1px;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+  text-align: center;
+}
+
+.efc-mode-tab.is-active {
+  color: #d4a574;
+  border-bottom-color: #d4a574;
+}
+
 @media (max-width: 640px) {
   .efc-page {
     padding: 24px 16px;
