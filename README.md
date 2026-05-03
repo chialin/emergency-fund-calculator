@@ -2,7 +2,7 @@
 
 ![Emergency Fund Calculator preview](public/og-image.png)
 
-🌐 **Live demo:** [emergency-fund.chialin.me](https://emergency-fund.chialin.me)
+🌐 **Live demo:** [emergency fund caculator](https://emergency-fund.chialin.me)
 
 [English](#english) · [繁體中文](#繁體中文)
 
