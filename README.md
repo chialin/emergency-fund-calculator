@@ -1,5 +1,9 @@
 # Emergency Fund Reserve Calculator
 
+[English](README.en.md) | **繁體中文**
+
+![Emergency Fund Calculator preview](public/og-image.png)
+
 🌐 **Live demo:** [emergency-fund.chialin.me](https://emergency-fund.chialin.me)
 
 基於 CFPB 指引、BLS 失業統計與 4% 安全提領法則的個人化緊急預備金計算器。
