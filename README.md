@@ -49,34 +49,37 @@ npm run build        # Output to dist/
 npm run preview      # Preview build output
 ```
 
-### Deployment to Cloudflare Pages
+### Deployment
 
-#### Option 1: Cloudflare Dashboard (recommended for first-time setup)
+This site auto-deploys via [Cloudflare Pages](https://pages.cloudflare.com/)' built-in GitHub integration — every push to `main` triggers a new production build automatically. **No GitHub Actions workflow is involved on the deploy side**; Cloudflare polls the repo directly.
 
-1. Push this repo to GitHub
-2. Sign in to [Cloudflare Dashboard](https://dash.cloudflare.com/) → Workers & Pages → Create → Pages → Connect to Git
-3. Choose the repo and configure:
-   - **Framework preset**: Vite
-   - **Build command**: `npm run build`
-   - **Build output directory**: `dist`
-   - **Node version**: `20` (add `NODE_VERSION=20` to Environment variables)
-4. Deploy
+**Pages project configuration** (Cloudflare Dashboard → Workers & Pages → `emergency-fund-calculator` → Settings → Builds & deployments):
 
-#### Option 2: Wrangler CLI (deploy from local)
+| Setting                | Value            |
+| ---------------------- | ---------------- |
+| Production branch      | `main`           |
+| Framework preset       | Vite             |
+| Build command          | `npm run build`  |
+| Build output directory | `dist`           |
+| Environment variables  | `NODE_VERSION=20` |
+
+**Custom domain**: `emergency-fund.chialin.me` is mapped via a CNAME record on the `chialin.me` zone (which lives on external DNS, not Cloudflare). The CNAME points at the project's `*.pages.dev` address; Cloudflare Pages issues the SSL cert via Universal SSL. Cloudflare Workers Custom Domains is not used because it requires the apex zone to be on Cloudflare DNS.
+
+#### Replicating this setup on a fork
+
+1. Push your fork to GitHub
+2. Cloudflare Dashboard → Workers & Pages → Create → Pages → Connect to Git
+3. Select your repo and apply the configuration table above
+4. (Optional) Pages → Custom domains → add your own subdomain CNAME
+
+#### Manual deploy from local
+
+For one-off deploys that bypass git (e.g. quick hotfix preview):
 
 ```bash
 npx wrangler login
-npm run deploy
+npm run deploy   # = npm run build && wrangler pages deploy dist
 ```
-
-#### Option 3: GitHub Actions (auto deploy)
-
-Set the following Secrets in your GitHub repo:
-
-- `CLOUDFLARE_API_TOKEN` — create from Cloudflare Dashboard → My Profile → API Tokens using the "Edit Cloudflare Workers" template
-- `CLOUDFLARE_ACCOUNT_ID` — visible on the right side of the Workers & Pages overview page
-
-Pushing to the `main` branch triggers `.github/workflows/deploy.yml`.
 
 ### Project Structure
 
@@ -157,34 +160,37 @@ npm run build        # 產出 dist/
 npm run preview      # 預覽 build 結果
 ```
 
-### 部署到 Cloudflare Pages
+### 部署
 
-#### 方式一：Cloudflare Dashboard（推薦初次設定）
+此站台透過 [Cloudflare Pages](https://pages.cloudflare.com/) 內建的 GitHub 整合自動部署 —— 每次 push 到 `main` 分支會觸發新的 production build，**部署端不經過任何 GitHub Actions workflow**，由 Cloudflare 直接 poll repo。
 
-1. 將此 repo 推送到 GitHub
-2. 登入 [Cloudflare Dashboard](https://dash.cloudflare.com/) → Workers & Pages → Create → Pages → Connect to Git
-3. 選擇 repo，設定：
-   - **Framework preset**: Vite
-   - **Build command**: `npm run build`
-   - **Build output directory**: `dist`
-   - **Node version**: `20`（在 Environment variables 加入 `NODE_VERSION=20`）
-4. Deploy
+**Pages 專案設定**（Cloudflare Dashboard → Workers & Pages → `emergency-fund-calculator` → Settings → Builds & deployments）：
 
-#### 方式二：Wrangler CLI（本地直接 deploy）
+| 設定項目               | 值                |
+| ---------------------- | ----------------- |
+| Production branch      | `main`            |
+| Framework preset       | Vite              |
+| Build command          | `npm run build`   |
+| Build output directory | `dist`            |
+| Environment variables  | `NODE_VERSION=20` |
+
+**自訂網域**：`emergency-fund.chialin.me` 是在 `chialin.me` zone（DNS 託管於 Cloudflare 之外）建立 CNAME 指向 Pages 的 `*.pages.dev` 位址，SSL 憑證由 Cloudflare Pages 透過 Universal SSL 自動簽發。沒有改用 Cloudflare Workers Custom Domains 是因為它需要 apex zone 託管在 Cloudflare DNS。
+
+#### Fork 後複製這套設定
+
+1. 把 fork push 到自己的 GitHub
+2. Cloudflare Dashboard → Workers & Pages → Create → Pages → Connect to Git
+3. 選擇你的 repo，套用上方設定表
+4. （選用）Pages → Custom domains 加自己的子網域 CNAME
+
+#### 從本地手動部署
+
+繞過 git 的一次性部署（例如 hotfix 前先看效果）：
 
 ```bash
 npx wrangler login
-npm run deploy
+npm run deploy   # = npm run build && wrangler pages deploy dist
 ```
-
-#### 方式三：GitHub Actions（自動部署）
-
-在 GitHub repo 設定 Secrets：
-
-- `CLOUDFLARE_API_TOKEN` — 在 Cloudflare Dashboard → My Profile → API Tokens 建立，使用 "Edit Cloudflare Workers" 範本
-- `CLOUDFLARE_ACCOUNT_ID` — 在 Workers & Pages 概覽頁右側可看到
-
-push 到 `main` 分支即觸發 `.github/workflows/deploy.yml`。
 
 ### 專案結構
 
