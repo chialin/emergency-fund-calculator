@@ -57,6 +57,17 @@ export function Footer({ language }: Props) {
         </div>
       </div>
       <div style={{ marginTop: 12, color: T.textFaint }}>{t(language, 'footer.disclaimer')}</div>
+      <div style={{ marginTop: 12, color: T.textFaint }}>
+        § MIT ·{' '}
+        <a
+          href="https://github.com/chialin/emergency-fund-calculator"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: T.textDim, textDecoration: 'underline' }}
+        >
+          github.com/chialin/emergency-fund-calculator
+        </a>
+      </div>
     </div>
   );
 }
