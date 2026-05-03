@@ -115,7 +115,7 @@ See the SOURCES section in the `Footer` for full citations.
 
 ### License
 
-Private. Personal finance tooling, not a substitute for professional advice.
+[MIT](LICENSE) © 2026 Chialin. Personal finance tooling, not a substitute for professional advice.
 
 ---
 
@@ -226,4 +226,4 @@ src/
 
 ### License
 
-Private. 個人理財工具，不構成專業建議。
+[MIT](LICENSE) © 2026 Chialin. 個人理財工具，不構成專業建議。
